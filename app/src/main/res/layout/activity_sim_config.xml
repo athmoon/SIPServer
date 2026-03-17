@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认外呼SIM卡"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/sp_default_sim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_marginVertical="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIM卡1 配置"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/cb_sim0_forward_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="来电转发到分机"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/et_sim0_call_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="转发目标分机号"
+            android:inputType="number"
+            android:maxLength="4" />
+
+        <CheckBox
+            android:id="@+id/cb_sim0_forward_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="短信转发到分机"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/et_sim0_sms_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="转发目标分机号"
+            android:inputType="number"
+            android:maxLength="4" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_marginVertical="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIM卡2 配置"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/cb_sim1_forward_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="来电转发到分机"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/et_sim1_call_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="转发目标分机号"
+            android:inputType="number"
+            android:maxLength="4" />
+
+        <CheckBox
+            android:id="@+id/cb_sim1_forward_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="短信转发到分机"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/et_sim1_sms_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="转发目标分机号"
+            android:inputType="number"
+            android:maxLength="4" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="保存配置"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+</ScrollView>

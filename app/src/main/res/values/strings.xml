@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SIP服务端</string>
+    <string name="service_name">SIP服务</string>
+    <string name="server_status">服务状态</string>
+    <string name="server_running">运行中</string>
+    <string name="server_stopped">已停止</string>
+    <string name="clients_registered">已注册客户端</string>
+    <string name="active_calls">当前通话</string>
+    <string name="settings">设置</string>
+    <string name="sip_port">SIP端口</string>
+    <string name="sip_domain">SIP域</string>
+    <string name="sim_card_config">SIM卡配置</string>
+    <string name="forward_rules">转发规则</string>
+    <string name="start_service">启动服务</string>
+    <string name="stop_service">停止服务</string>
+    <string name="permission_required">需要权限</string>
+    <string name="grant_permission">授予权限</string>
+    <string name="phone_permission_desc">需要电话权限来处理来电和拨打电话</string>
+    <string name="sms_permission_desc">需要短信权限来发送和接收短信</string>
+    <string name="unknown_caller">未知号码</string>
+    <string name="incoming_call">来电</string>
+    <string name="outgoing_call">去电</string>
+    <string name="call_ended">通话结束</string>
+    <string name="sms_received">收到短信</string>
+    <string name="sms_sent">短信已发送</string>
+</resources>
