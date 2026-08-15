@@ -1,0 +1,89 @@
+name: Android Build SIPServer
+# 并发控制：新推送取消旧构建，避免冲突
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# 触发规则
+on:
+  push:
+    branches: [ main ] # 提交main分支自动构建
+  pull_request:
+    branches: [ main ] # PR到main自动构建校验
+  workflow_dispatch: # 支持网页手动触发构建
+
+env:
+  # 适配项目要求：JDK17、SDK34
+  JAVA_VERSION: 17
+  ANDROID_SDK_VERSION: 34
+  GRADLE_OPTS: "-Xmx4096m" # 分配内存避免编译OOM
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取代码
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. 配置JDK17（项目强制要求）+ Gradle缓存加速
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
+
+      # 3. 自动安装Android SDK34
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          sdk-version: ${{ env.ANDROID_SDK_VERSION }}
+
+      # 4. 赋予gradlew执行权限
+      - name: Grant Gradle execute permission
+        run: chmod +x ./gradlew
+
+      # 5. 清理旧构建产物
+      - name: Clean project
+        run: ./gradlew clean
+
+      # 6. 代码Lint静态检查（可选，提前发现代码问题）
+      - name: Run Lint check
+        run: ./gradlew lint
+
+      # 7. 单元测试
+      - name: Run Unit Test
+        run: ./gradlew test
+
+      # 8. 编译Debug APK（可直接安装调试）
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      # 9. 编译未签名Release APK
+      - name: Build Unsigned Release APK
+        run: ./gradlew assembleRelease
+
+      # ========== 上传构建产物 ==========
+      # Debug包
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: SIPServer-Debug-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      # Release未签名包
+      - name: Upload Unsigned Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: SIPServer-Release-Unsigned-APK
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      # Lint报告
+      - name: Upload Lint Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lint-Reports
+          path: app/build/reports/lint-results.html
