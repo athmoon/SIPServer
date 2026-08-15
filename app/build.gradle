@@ -57,7 +57,8 @@ dependencies {
     
     // 日志
     implementation 'org.slf4j:slf4j-api:2.0.9'
-    implementation 'com.github.tony19:logback-android:3.0.0'
+    // implementation 'com.github.tony19:logback-android:3.0.0'
+    implementation 'com.github.tony19:logback-android:2.0.1'
     
     // JSON处理
     implementation 'com.google.code.gson:gson:2.10.1'
