@@ -31,6 +31,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      # 【新增】自动生成 gradlew wrapper
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
+
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
